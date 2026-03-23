@@ -1,0 +1,26 @@
+schema slack_message {
+    document slack_message {
+        field channel_id type string {
+            indexing: summary | attribute
+        }
+        field content type string {
+            indexing: summary | index
+        }
+        field timestamp type long {
+                    indexing: summary | attribute
+        }
+        field embedding type tensor<float>(x[384]) {
+            indexing: attribute | index
+            attribute { distance-metric: angular }
+        }
+    }
+
+    rank-profile hybrid_search {
+        inputs {
+            query(user_vector) tensor<float>(x[384])
+        }
+      first-phase {
+                  expression: closeness(field, embedding) + bm25(content)
+              }
+    }
+}

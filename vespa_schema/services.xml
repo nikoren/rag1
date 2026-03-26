@@ -7,7 +7,8 @@
     <content id="slack_content" version="1.0">
         <redundancy>1</redundancy>
         <documents>
-            <document type="slack_message" mode="index" />
+            <document type="source_metadata" mode="index" global="true" />
+            <document type="knowledge_chunk" mode="index" />
         </documents>
         <nodes>
             <node hostalias="node1" distribution-key="0" />

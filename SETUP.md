@@ -116,7 +116,7 @@ $ vespa status
 
 The schema is the migration. When you change your .sd file and run vespa deploy, Vespa compares your new schema to the one currently running and handles the transition automatically.
 
-- for example i am dding new field to schema and run  ` vespa deploy vespa_schema --wait 300` again to apply the change
+- for example i am adding new field to schema and run  ` vespa deploy vespa_schema --wait 300` again to apply the change
 - `How "Migrations" Work in Vespa`
 Vespa is built for "Live Schema Evolution." This means it can change its internal database structure while you are still sending queries and data.
 Adding a Field (Safe): When you add field timestamp type long, Vespa simply starts allowing that field in new documents. Existing documents will just have a "null" or 0 value for that field until you update them.

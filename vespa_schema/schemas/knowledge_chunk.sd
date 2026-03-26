@@ -1,0 +1,42 @@
+schema knowledge_chunk {
+    document knowledge_chunk {
+        field parent_ref type reference<source_metadata> {
+            indexing: summary | attribute
+        }
+        field sequence_index type int {
+            indexing: summary | attribute
+        }
+        field chunk_id type string {
+            indexing: summary | attribute
+        }
+        field chunk_hash type string {
+            indexing: summary | attribute
+        }
+        field indexed_at type long {
+            indexing: summary | attribute
+        }
+        field text_content type string {
+            indexing: summary | index
+        }
+        field embedding type tensor<float>(x[384]) {
+            indexing: attribute | index
+            attribute { distance-metric: angular }
+        }
+    }
+
+    import field parent_ref.url as url {
+        indexing: summary | attribute
+    }
+    import field parent_ref.source_type as source_type {
+        indexing: summary | attribute
+    }
+
+    rank-profile hybrid_search {
+        inputs {
+            query(user_vector) tensor<float>(x[384])
+        }
+        first-phase {
+            expression: closeness(field, embedding) + bm25(text_content)
+        }
+    }
+}

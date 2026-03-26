@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<validation-overrides>
+    <allow until="2026-03-30">schema-removal</allow>
+</validation-overrides>

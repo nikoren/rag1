@@ -1,0 +1,22 @@
+schema source_metadata {
+    document source_metadata {
+        field source_id type string {
+            indexing: summary | attribute
+        }
+        field source_type type string {
+            indexing: summary | attribute
+        }
+        field author type string {
+            indexing: summary | attribute
+        }
+        field url type string {
+            indexing: summary | attribute
+        }
+        field timestamp type long {
+            indexing: summary | attribute
+        }
+        field source_hash type string {
+            indexing: summary | attribute
+        }
+    }
+}
